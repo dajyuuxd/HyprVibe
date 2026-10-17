@@ -47,6 +47,13 @@ PKGS=(
     networkmanager
     bluez
     bluez-utils
+    pipewire
+    pipewire-audio
+    pipewire-pulse
+    pipewire-alsa
+    wireplumber
+    alsa-utils
+    pavucontrol
 )
 
 if [ "$EUID" -eq 0 ]; then
@@ -150,6 +157,8 @@ if [ -n "${WAYLAND_DISPLAY:-}" ]; then
     echo ":: Ensuring persistent Waybar supervisor is running..."
     "$HOME/.config/waybar/scripts/launch-waybar.sh" &>/dev/null &
     disown
+    echo ":: Enabling and starting PipeWire audio services..."
+    systemctl --user enable --now pipewire pipewire-pulse wireplumber 2>/dev/null || true
 fi
 
 echo -e "\033[1;32m=========================================================\033[0m"
