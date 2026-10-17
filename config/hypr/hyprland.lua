@@ -50,11 +50,12 @@ hl.on("hyprland.start", function()
     hl.exec_cmd("dunst &")
     hl.exec_cmd("/home/ming/.local/usr/bin/hyprpaper -c /home/ming/.config/hypr/hyprpaper.conf &")
     hl.exec_cmd("/home/ming/.config/waybar/scripts/launch-waybar.sh &")
-    hl.exec_cmd("wl-paste --watch cliphist store &")
+    hl.exec_cmd("/home/ming/.config/hypr/scripts/launch-clipboard.sh &")
 end)
 
--- Ensure supervisor daemon is running even on live reload (flock guarantees singleton)
+-- Ensure supervisor daemons are running even on live reload (flock guarantees singleton)
 hl.exec_cmd("/home/ming/.config/waybar/scripts/launch-waybar.sh &")
+hl.exec_cmd("/home/ming/.config/hypr/scripts/launch-clipboard.sh &")
 
 --------------------------------------------------------------------------------
 -- 4. LOOK AND FEEL (Optimized for small screens)
