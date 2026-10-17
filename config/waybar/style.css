@@ -29,6 +29,9 @@ window#waybar {
 /* 2. Bubble Elements Base Style */
 #custom-host,
 #workspaces,
+#cpu,
+#memory,
+#custom-gpu,
 #custom-history,
 #custom-volume,
 #network,
@@ -47,6 +50,9 @@ window#waybar {
 }
 
 #custom-host:hover,
+#cpu:hover,
+#memory:hover,
+#custom-gpu:hover,
 #custom-history:hover,
 #custom-volume:hover,
 #network:hover,
@@ -90,6 +96,46 @@ window#waybar {
 #workspaces button:hover {
   background: rgba(255, 255, 255, 0.14);
   color: #ffffff;
+}
+
+/* 4b. Performance Monitor Bubbles (CPU, RAM, VGA) */
+#cpu {
+  color: #fab387; /* Catppuccin Peach */
+}
+
+#cpu.warning {
+  color: #f9e2af;
+}
+
+#cpu.critical {
+  color: #f38ba8;
+  border-color: rgba(243, 139, 168, 0.45);
+}
+
+#memory {
+  color: #cba6f7; /* Catppuccin Mauve */
+}
+
+#memory.warning {
+  color: #f9e2af;
+}
+
+#memory.critical {
+  color: #f38ba8;
+  border-color: rgba(243, 139, 168, 0.45);
+}
+
+#custom-gpu {
+  color: #94e2d5; /* Catppuccin Teal */
+}
+
+#custom-gpu.warning {
+  color: #f9e2af;
+}
+
+#custom-gpu.critical {
+  color: #f38ba8;
+  border-color: rgba(243, 139, 168, 0.45);
 }
 
 /* 5. Volume Bubble */

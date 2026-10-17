@@ -27,6 +27,9 @@ Unlike standard dotfiles designed for 1080p or 4K monitors that feel cramped and
 - **Deep compositor layer blur** (`passes = 3, size = 8, vibrancy = 0.25`) creating true frosted glass.
 - **Floating pill bubble modules**:
   - `( 1 ) ( 2 )` **Circular Workspaces**: Active workspace glowing with ice-blue border.
+  - ` <cpu>%` **CPU Performance Bubble**: Real-time load in Catppuccin Peach (click to open `htop`).
+  - ` <ram>%` **RAM Memory Bubble**: Dynamic RAM utilization in Catppuccin Mauve with detailed memory & swap tooltips.
+  - `󰢮 <vga>%` **VGA / GPU Performance Bubble**: Real-time GPU utilization & clock speed in Catppuccin Teal.
   - ` hostname@username`: Centered system badge.
   - `󰋚 <count>` **RAM Command History**: Real-time counter of saved commands.
   - `󰕾 <vol>%` **Interactive Volume**: Scroll to adjust, click to mute, zero latency.
