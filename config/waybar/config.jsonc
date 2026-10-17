@@ -1,0 +1,84 @@
+{
+  "layer": "top",
+  "position": "top",
+  "height": 32,
+  "spacing": 0,
+  "margin-top": 0,
+  "margin-left": 0,
+  "margin-right": 0,
+  "modules-left": ["hyprland/workspaces"],
+  "modules-center": ["custom/host"],
+  "modules-right": ["custom/history", "custom/volume", "network", "bluetooth", "tray", "clock", "custom/power"],
+
+  "hyprland/workspaces": {
+    "format": "{id}",
+    "on-click": "activate",
+    "all-outputs": true,
+    "active-only": false,
+    "sort-by-number": true,
+    "ignore-workspaces": ["99"]
+  },
+
+  "custom/host": {
+    "exec": "/home/ming/.config/waybar/scripts/user-host.sh",
+    "interval": 3600,
+    "format": "󰣇 {}",
+    "tooltip": false,
+    "on-click": "/home/ming/.config/hypr/scripts/toggle-spotlight.sh"
+  },
+
+  "custom/history": {
+    "format": "{}",
+    "return-type": "json",
+    "exec": "/home/ming/.config/waybar/scripts/cmd_history.sh waybar",
+    "interval": 2,
+    "on-click": "/home/ming/.config/waybar/scripts/cmd_history.sh menu"
+  },
+
+  "custom/volume": {
+    "format": "{}",
+    "return-type": "json",
+    "exec": "/home/ming/.config/waybar/scripts/volume.sh",
+    "interval": 2,
+    "signal": 1,
+    "on-click": "/home/ming/.config/waybar/scripts/volume.sh mute && pkill -SIGRTMIN+1 waybar || true",
+    "on-scroll-up": "/home/ming/.config/waybar/scripts/volume.sh up && pkill -SIGRTMIN+1 waybar || true",
+    "on-scroll-down": "/home/ming/.config/waybar/scripts/volume.sh down && pkill -SIGRTMIN+1 waybar || true"
+  },
+
+  "network": {
+    "format-wifi": "󰤨 {essid}",
+    "format-ethernet": "󰈀 {ipaddr}",
+    "format-linked": "󰈀 (No IP)",
+    "format-disconnected": "󰤮 Offline",
+    "tooltip-format": "{ifname} via {gwaddr}",
+    "on-click": "kitty -e nmcli device wifi list || true"
+  },
+
+  "bluetooth": {
+    "format": "󰂯 {status}",
+    "format-connected": "󰂱 {device_alias}",
+    "format-connected-battery": "󰂱 {device_alias} {device_battery_percentage}%",
+    "format-disabled": "󰂲 Off",
+    "format-off": "󰂲 Off",
+    "format-no-controller": "󰂲 Off",
+    "tooltip-format": "{controller_alias}\t{controller_address}"
+  },
+
+  "tray": {
+    "icon-size": 14,
+    "spacing": 8
+  },
+
+  "clock": {
+    "format": "󰥔 {:%H:%M}",
+    "format-alt": "󰃭 {:%a, %d %b}",
+    "tooltip-format": "<big>{:%Y %B}</big>\n<tt><small>{calendar}</small></tt>"
+  },
+
+  "custom/power": {
+    "format": "󰐥",
+    "tooltip": "Power Menu (Super + Esc)",
+    "on-click": "/home/ming/.config/hypr/scripts/power-menu.sh"
+  }
+}

@@ -1,0 +1,154 @@
+/* =============================================================================
+   Waybar Stylesheet
+   Straight frosted-blur taskbar with floating bubble modules
+   ============================================================================= */
+
+* {
+  font-family: "JetBrainsMono Nerd Font", "DejaVuSansM Nerd Font", "Noto Color Emoji", sans-serif;
+  font-size: 11.5px;
+  font-weight: 600;
+  min-height: 0;
+}
+
+/* 1. Straight Taskbar Bar */
+window#waybar {
+  background: rgba(17, 17, 27, 0.75);
+  border-bottom: 1px solid rgba(255, 255, 255, 0.08);
+  box-shadow: 0 4px 14px rgba(0, 0, 0, 0.35);
+}
+
+/* Clear outer grouping containers so bubbles float independently */
+.modules-left, .modules-center, .modules-right {
+  background: transparent;
+  border: none;
+  box-shadow: none;
+  padding: 0;
+  margin: 0 4px;
+}
+
+/* 2. Bubble Elements Base Style */
+#custom-host,
+#workspaces,
+#custom-history,
+#custom-volume,
+#network,
+#bluetooth,
+#tray,
+#clock,
+#custom-power {
+  background: rgba(30, 30, 46, 0.82);
+  border: 1px solid rgba(255, 255, 255, 0.12);
+  border-radius: 16px;
+  padding: 2px 10px;
+  margin: 3px 3px;
+  box-shadow: 0 2px 6px rgba(0, 0, 0, 0.28);
+  color: #cdd6f4;
+  transition: all 0.2s ease;
+}
+
+#custom-host:hover,
+#custom-history:hover,
+#custom-volume:hover,
+#network:hover,
+#bluetooth:hover,
+#clock:hover {
+  background: rgba(49, 50, 68, 0.90);
+  border-color: rgba(137, 180, 250, 0.45);
+}
+
+/* 3. Center Hostname @ Username Bubble */
+#custom-host {
+  color: #89b4fa;
+  font-weight: 700;
+  padding: 2px 14px;
+}
+
+/* 4. Workspaces Bubble with Fully Round Buttons */
+#workspaces {
+  padding: 2px 4px;
+}
+
+#workspaces button {
+  color: #a6adc8;
+  border-radius: 50%;
+  min-width: 20px;
+  min-height: 20px;
+  padding: 0;
+  margin: 0 2px;
+  background: rgba(255, 255, 255, 0.05);
+  border: none;
+  transition: all 0.2s ease;
+}
+
+#workspaces button.active {
+  color: #11111b;
+  background: #89b4fa;
+  font-weight: 700;
+  box-shadow: 0 0 10px rgba(137, 180, 250, 0.7);
+}
+
+#workspaces button:hover {
+  background: rgba(255, 255, 255, 0.14);
+  color: #ffffff;
+}
+
+/* 5. Volume Bubble */
+#custom-volume {
+  color: #a6e3a1;
+}
+
+#custom-volume.muted {
+  color: #fab387;
+  border-color: rgba(250, 179, 135, 0.3);
+}
+
+/* 6. Wifi / Network Bubble */
+#network {
+  color: #74c7ec;
+}
+
+#network.disconnected {
+  color: #f38ba8;
+  border-color: rgba(243, 139, 168, 0.3);
+}
+
+/* 7. Bluetooth Bubble */
+#bluetooth {
+  color: #b4befe;
+}
+
+#bluetooth.disabled,
+#bluetooth.off,
+#bluetooth.no-controller {
+  color: #6c7086;
+}
+
+/* 8. System Tray Bubble */
+#tray {
+  padding: 2px 8px;
+}
+
+/* 9. In-Memory Command History Bubble */
+#custom-history {
+  color: #f9e2af;
+}
+
+/* 10. Clock Bubble */
+#clock {
+  color: #cba6f7;
+  font-weight: 700;
+}
+
+/* 11. Power Menu Bubble */
+#custom-power {
+  color: #f38ba8;
+  font-size: 13.5px;
+  padding: 2px 9px;
+  margin-right: 6px;
+}
+
+#custom-power:hover {
+  background: rgba(243, 139, 168, 0.22);
+  border-color: rgba(243, 139, 168, 0.55);
+  color: #f38ba8;
+}
