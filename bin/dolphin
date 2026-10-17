@@ -1,3 +1,4 @@
 #!/bin/bash
-# Dolphin File Manager with Catppuccin Mocha Styling
+# Dolphin File Manager with Catppuccin Mocha Styling and text contrast fix
+export LD_PRELOAD="/home/ming/.local/lib/libdolphin_fix.so"
 exec /usr/bin/dolphin -stylesheet /home/ming/.config/dolphin/style.qss "$@"

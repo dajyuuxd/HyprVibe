@@ -124,11 +124,17 @@ if [ -d "$SCRIPT_DIR/config/systemd/user" ]; then
     cp -rf "$SCRIPT_DIR/config/systemd/user/"* "$HOME/.config/systemd/user/"
 fi
 
-# Deploy custom binary wrappers (e.g. styled Dolphin)
-mkdir -p "$HOME/.local/bin"
+# Deploy custom binary wrappers and library helpers (e.g. styled Dolphin & palette hook)
+mkdir -p "$HOME/.local/bin" "$HOME/.local/lib" "$HOME/.local/share/color-schemes"
 if [ -d "$SCRIPT_DIR/bin" ]; then
     cp -rf "$SCRIPT_DIR/bin/"* "$HOME/.local/bin/"
     chmod +x "$HOME/.local/bin/"* 2>/dev/null || true
+fi
+if [ -d "$SCRIPT_DIR/lib" ]; then
+    cp -rf "$SCRIPT_DIR/lib/"* "$HOME/.local/lib/"
+fi
+if [ -d "$SCRIPT_DIR/assets/color-schemes" ]; then
+    cp -rf "$SCRIPT_DIR/assets/color-schemes/"* "$HOME/.local/share/color-schemes/"
 fi
 
 # Set executable permissions on all helper scripts
