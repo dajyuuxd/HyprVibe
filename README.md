@@ -191,13 +191,27 @@ chmod +x install.sh
 ```
 
 The installer will automatically:
-1. Install all official dependencies via `pacman` (`hyprland`, `hyprpaper`, `waybar`, `wofi`, `kitty`, `dolphin`, `breeze`, `cliphist`, `wl-clipboard`, `wtype`, `grim`, `slurp`, `ttf-jetbrains-mono-nerd`, etc.).
+1. Install all official dependencies via `pacman` (`hyprland`, `hyprpaper`, `waybar`, `wofi`, `kitty`, `dolphin`, `breeze`, `cliphist`, `wl-clipboard`, `wtype`, `grim`, `slurp`, `ttf-jetbrains-mono-nerd`, `pipewire-audio`, `pipewire-pulse`, `wireplumber`, etc.).
 2. Fetch and configure `Symbols Nerd Font` and update font caches.
 3. Install the Catppuccin Mocha cursor theme and wallpapers.
 4. Back up any existing `~/.config` files into a timestamped directory.
 5. Deploy all configurations, Qt stylesheets, and scripts with executable permissions.
 6. Configure the RAM command history hook in `~/.bashrc`.
-7. Reload the desktop environment live.
+7. Initialize PipeWire & WirePlumber audio services and set volume to 100%.
+8. Reload the desktop environment live.
+
+### 🔊 Audio Setup & Quick Fix Command
+If audio is not playing or you need to restore the full PipeWire audio stack and unmute at 100% volume:
+
+```bash
+# Run the built-in audio setup helper:
+setup-audio
+```
+
+Or run the one-line command directly:
+```bash
+sudo pacman -S --needed pipewire-audio pipewire-pulse pipewire-alsa wireplumber alsa-utils pavucontrol && systemctl --user enable --now pipewire pipewire-pulse wireplumber && sleep 1 && wpctl set-mute @DEFAULT_AUDIO_SINK@ 0 && wpctl set-volume @DEFAULT_AUDIO_SINK@ 1.0
+```
 
 ---
 

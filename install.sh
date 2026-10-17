@@ -159,6 +159,11 @@ if [ -n "${WAYLAND_DISPLAY:-}" ]; then
     disown
     echo ":: Enabling and starting PipeWire audio services..."
     systemctl --user enable --now pipewire pipewire-pulse wireplumber 2>/dev/null || true
+    sleep 1
+    echo ":: Initializing audio hardware volume to 100% and unmuting..."
+    wpctl set-mute @DEFAULT_AUDIO_SINK@ 0 2>/dev/null || true
+    wpctl set-volume @DEFAULT_AUDIO_SINK@ 1.0 2>/dev/null || true
+    pkill -SIGRTMIN+1 waybar 2>/dev/null || true
 fi
 
 echo -e "\033[1;32m=========================================================\033[0m"
