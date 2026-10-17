@@ -143,6 +143,7 @@ hl.bind(mainMod .. " + Return", hl.dsp.exec_cmd("kitty"))
 hl.bind(mainMod .. " + E",      hl.dsp.exec_cmd("dolphin"))
 hl.bind(mainMod .. " + SPACE",  hl.dsp.exec_cmd("/home/ming/.config/hypr/scripts/toggle-spotlight.sh"))
 hl.bind(mainMod .. " + V",      hl.dsp.exec_cmd("/home/ming/.config/hypr/scripts/paste-history.sh"))
+hl.bind(mainMod .. " + B",      hl.dsp.exec_cmd("/home/ming/.config/waybar/scripts/toggle-waybar.sh"))
 hl.bind(mainMod .. " + Escape", hl.dsp.exec_cmd("/home/ming/.config/hypr/scripts/power-menu.sh"))
 
 -- Window Actions

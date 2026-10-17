@@ -82,6 +82,7 @@ Unlike standard dotfiles designed for 1080p or 4K monitors that feel cramped and
 | <kbd>Super</kbd> + <kbd>E</kbd> | Open Redesigned Dolphin File Manager |
 | <kbd>Super</kbd> + <kbd>Space</kbd> | Spotlight Application Launcher (Wofi) |
 | <kbd>Super</kbd> + <kbd>V</kbd> | Clipboard Paste History (Cliphist + Wofi) |
+| <kbd>Super</kbd> + <kbd>B</kbd> | Toggle Taskbar (Waybar) Visibility (Show / Hide) |
 | <kbd>Super</kbd> + <kbd>Esc</kbd> | System Power Menu (Shutdown, Reboot, etc.) |
 
 ### 🪟 Window Management
