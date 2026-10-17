@@ -49,6 +49,7 @@ hl.on("hyprland.start", function()
     hl.exec_cmd("dunst &")
     hl.exec_cmd("/home/ming/.local/usr/bin/hyprpaper -c /home/ming/.config/hypr/hyprpaper.conf &")
     hl.exec_cmd("LD_LIBRARY_PATH=/home/ming/.local/usr/lib /home/ming/.local/usr/bin/waybar -c /home/ming/.config/waybar/config.jsonc -s /home/ming/.config/waybar/style.css &")
+    hl.exec_cmd("wl-paste --watch cliphist store &")
 end)
 
 --------------------------------------------------------------------------------
@@ -140,6 +141,7 @@ local mainMod = "SUPER"
 hl.bind(mainMod .. " + Return", hl.dsp.exec_cmd("kitty"))
 hl.bind(mainMod .. " + E",      hl.dsp.exec_cmd("dolphin"))
 hl.bind(mainMod .. " + SPACE",  hl.dsp.exec_cmd("/home/ming/.config/hypr/scripts/toggle-spotlight.sh"))
+hl.bind(mainMod .. " + V",      hl.dsp.exec_cmd("/home/ming/.config/hypr/scripts/paste-history.sh"))
 hl.bind(mainMod .. " + Escape", hl.dsp.exec_cmd("/home/ming/.config/hypr/scripts/power-menu.sh"))
 
 -- Window Actions

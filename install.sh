@@ -30,6 +30,8 @@ PKGS=(
     grim
     slurp
     wl-clipboard
+    cliphist
+    wtype
     brightnessctl
     libnotify
     polkit-kde-agent

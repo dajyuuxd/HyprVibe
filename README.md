@@ -21,6 +21,8 @@ A minimalist, high-performance, and aesthetic desktop environment built on **Arc
   - Quick popup for Shutdown, Reboot, Suspend, Hibernate, Lock, and Logout via <kbd>Super</kbd> + <kbd>Esc</kbd> or the taskbar power bubble.
 - **Show Desktop**:
   - <kbd>Super</kbd> + <kbd>D</kbd> cleanly hides all windows to show the clean wallpaper; press again to resume all windows in place.
+- **Clipboard Paste History**:
+  - Bound to <kbd>Super</kbd> + <kbd>V</kbd> with auto-paste into the active window, powered by `cliphist`, `wl-clipboard`, and Wofi.
 - **Dynamic Terminal Font Scaling**:
   - Scale font in Kitty with <kbd>Super</kbd> + <kbd>=</kbd> and <kbd>Super</kbd> + <kbd>-</kbd> (resets to default 10.5 on exit).
 
@@ -33,6 +35,7 @@ A minimalist, high-performance, and aesthetic desktop environment built on **Arc
 | <kbd>Super</kbd> + <kbd>Return</kbd> | Open Kitty Terminal |
 | <kbd>Super</kbd> + <kbd>E</kbd> | Open File Manager (Dolphin) |
 | <kbd>Super</kbd> + <kbd>Space</kbd> | Spotlight Application Launcher (Wofi) |
+| <kbd>Super</kbd> + <kbd>V</kbd> | Clipboard Paste History (Wofi + Cliphist) |
 | <kbd>Super</kbd> + <kbd>Q</kbd> | Close Active Window |
 | <kbd>Super</kbd> + <kbd>F</kbd> | Fullscreen Toggle |
 | <kbd>Super</kbd> + <kbd>D</kbd> | Show Desktop (Hide all windows / Resume) |
