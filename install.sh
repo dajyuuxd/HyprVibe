@@ -111,6 +111,12 @@ if [ -f "$SCRIPT_DIR/config/kdeglobals" ]; then
     cp -f "$SCRIPT_DIR/config/kdeglobals" "$HOME/.config/kdeglobals"
 fi
 
+# Deploy systemd user services
+if [ -d "$SCRIPT_DIR/config/systemd/user" ]; then
+    mkdir -p "$HOME/.config/systemd/user"
+    cp -rf "$SCRIPT_DIR/config/systemd/user/"* "$HOME/.config/systemd/user/"
+fi
+
 # Deploy custom binary wrappers (e.g. styled Dolphin)
 mkdir -p "$HOME/.local/bin"
 if [ -d "$SCRIPT_DIR/bin" ]; then
@@ -141,13 +147,9 @@ fi
 if [ -n "${WAYLAND_DISPLAY:-}" ]; then
     echo ":: Reloading Hyprland configuration..."
     hyprctl reload 2>/dev/null || true
-    if pgrep -x waybar >/dev/null 2>&1; then
-        echo ":: Restarting Waybar..."
-        pkill -x waybar || true
-        sleep 0.5
-        waybar -c "$HOME/.config/waybar/config.jsonc" -s "$HOME/.config/waybar/style.css" &>/dev/null &
-        disown
-    fi
+    echo ":: Ensuring persistent Waybar supervisor is running..."
+    "$HOME/.config/waybar/scripts/launch-waybar.sh" &>/dev/null &
+    disown
 fi
 
 echo -e "\033[1;32m=========================================================\033[0m"

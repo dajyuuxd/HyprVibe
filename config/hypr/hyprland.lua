@@ -49,9 +49,12 @@ hl.on("hyprland.start", function()
     hl.exec_cmd("/usr/lib/polkit-kde-authentication-agent-1 &")
     hl.exec_cmd("dunst &")
     hl.exec_cmd("/home/ming/.local/usr/bin/hyprpaper -c /home/ming/.config/hypr/hyprpaper.conf &")
-    hl.exec_cmd("LD_LIBRARY_PATH=/home/ming/.local/usr/lib /home/ming/.local/usr/bin/waybar -c /home/ming/.config/waybar/config.jsonc -s /home/ming/.config/waybar/style.css &")
+    hl.exec_cmd("/home/ming/.config/waybar/scripts/launch-waybar.sh &")
     hl.exec_cmd("wl-paste --watch cliphist store &")
 end)
+
+-- Ensure supervisor daemon is running even on live reload (flock guarantees singleton)
+hl.exec_cmd("/home/ming/.config/waybar/scripts/launch-waybar.sh &")
 
 --------------------------------------------------------------------------------
 -- 4. LOOK AND FEEL (Optimized for small screens)

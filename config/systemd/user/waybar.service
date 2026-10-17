@@ -1,0 +1,14 @@
+[Unit]
+Description=Waybar System Bar (Persistent Taskbar Daemon)
+PartOf=graphical-session.target
+After=graphical-session.target
+
+[Service]
+ExecStart=/home/ming/.config/waybar/scripts/launch-waybar.sh
+Restart=always
+RestartSec=1
+Environment=WAYLAND_DISPLAY=wayland-1
+Environment=LD_LIBRARY_PATH=/home/ming/.local/usr/lib
+
+[Install]
+WantedBy=graphical-session.target

@@ -20,6 +20,10 @@ Unlike standard dotfiles designed for 1080p or 4K monitors that feel cramped and
 
 ### 1. 🪟 Straight Frosted Glass Taskbar (Waybar)
 - **Edge-to-edge 32px slim bar** preserving vertical screen real estate.
+- **Persistent Supervisor Daemon (`launch-waybar.sh`)**: Guaranteed to always start with Hyprland and automatically recover/restart within 1 second if ever terminated or interrupted.
+- **Flock-protected Singleton**: Atomic kernel file-locking prevents duplicate instances across config reloads or service restarts.
+- **Smooth Toggle (<kbd>Super</kbd> + <kbd>B</kbd>)**: Toggles bar visibility without terminating the process or supervisor loop.
+- **Systemd User Unit Integration**: Includes optional `waybar.service` for systemd graphical session target.
 - **Deep compositor layer blur** (`passes = 3, size = 8, vibrancy = 0.25`) creating true frosted glass.
 - **Floating pill bubble modules**:
   - `( 1 ) ( 2 )` **Circular Workspaces**: Active workspace glowing with ice-blue border.
