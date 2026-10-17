@@ -242,9 +242,30 @@ hl.bind(mainMod .. " + SHIFT + Tab",  function() cycle_workspace(-1) end)
 hl.bind(mainMod .. " + CTRL + Right", function() cycle_workspace(1) end)
 hl.bind(mainMod .. " + CTRL + Left",  function() cycle_workspace(-1) end)
 
--- Super + H / L (and Arrows): Focus neighbor window or snap when floating
-hl.bind(mainMod .. " + H",      function() snap_or_focus("left") end)
-hl.bind(mainMod .. " + L",      function() snap_or_focus("right") end)
+-- Circular Window Focus (Super + H / L):
+-- If 2 or more windows exist, cycles focus continuously through ALL windows in a circle:
+-- Super + L: Next window in cycle (e.g. Terminal 1 -> Terminal 2 -> Chrome -> Terminal 1)
+-- Super + H: Previous window in cycle (e.g. Chrome -> Terminal 2 -> Terminal 1 -> Chrome)
+local function cycle_or_snap(forward)
+    local win = hl.get_active_window()
+    local ws = hl.get_active_workspace()
+    local win_count = ws and ws.windows or 0
+
+    if win and win.floating and win_count <= 1 then
+        if forward then
+            hl.dispatch(hl.dsp.window.resize({ x = 674, y = 724 }))
+            hl.dispatch(hl.dsp.window.move({ x = 686, y = 38 }))
+        else
+            hl.dispatch(hl.dsp.window.resize({ x = 674, y = 724 }))
+            hl.dispatch(hl.dsp.window.move({ x = 6, y = 38 }))
+        end
+    else
+        hl.dispatch(hl.dsp.window.cycle_next({ forward = forward }))
+    end
+end
+
+hl.bind(mainMod .. " + H",      function() cycle_or_snap(false) end)
+hl.bind(mainMod .. " + L",      function() cycle_or_snap(true) end)
 hl.bind(mainMod .. " + Left",   function() snap_or_focus("left") end)
 hl.bind(mainMod .. " + Right",  function() snap_or_focus("right") end)
 hl.bind(mainMod .. " + Up",    hl.dsp.focus({ direction = "up" }))
