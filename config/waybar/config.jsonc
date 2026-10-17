@@ -6,9 +6,9 @@
   "margin-top": 0,
   "margin-left": 0,
   "margin-right": 0,
-  "modules-left": ["hyprland/workspaces", "cpu", "memory", "custom/gpu"],
+  "modules-left": ["hyprland/workspaces", "custom/distro", "cpu", "memory", "custom/gpu"],
   "modules-center": ["custom/host"],
-  "modules-right": ["custom/history", "custom/volume", "network", "bluetooth", "tray", "clock", "custom/power"],
+  "modules-right": ["custom/battery", "custom/history", "custom/volume", "network", "bluetooth", "tray", "clock", "custom/power"],
 
   "hyprland/workspaces": {
     "format": "{id}",
@@ -48,6 +48,23 @@
     "format": "󰣇 {}",
     "tooltip": false,
     "on-click": "/home/ming/.config/hypr/scripts/toggle-spotlight.sh"
+  },
+
+  "custom/distro": {
+    "exec": "/home/ming/.config/waybar/scripts/distro.sh",
+    "return-type": "json",
+    "interval": 3600,
+    "format": "{}",
+    "tooltip": true,
+    "on-click": "/home/ming/.config/hypr/scripts/toggle-spotlight.sh"
+  },
+
+  "custom/battery": {
+    "exec": "/home/ming/.config/waybar/scripts/battery.sh",
+    "return-type": "json",
+    "interval": 30,
+    "format": "{}",
+    "tooltip": true
   },
 
   "custom/history": {

@@ -29,9 +29,11 @@ Unlike standard dotfiles designed for 1080p or 4K monitors that feel cramped and
 - **Deep compositor layer blur** (`passes = 3, size = 8, vibrancy = 0.25`) creating true frosted glass.
 - **Floating pill bubble modules**:
   - `( 1 ) ( 2 )` **Circular Workspaces**: Active workspace glowing with ice-blue border.
+  - `󰣇 Arch Linux` **Distro Badge**: Distribution name with a tooltip showing the release, kernel, and architecture.
   - ` <cpu>%` **CPU Performance Bubble**: Real-time load in Catppuccin Peach (click to open `htop`).
   - ` <ram>%` **RAM Memory Bubble**: Dynamic RAM utilization in Catppuccin Mauve with detailed memory & swap tooltips.
   - `󰢮 <vga>%` **VGA / GPU Performance Bubble**: Real-time GPU utilization & clock speed in Catppuccin Teal.
+  - `󰁹 <battery>%` **Battery Bubble**: Live charge level with charging / low-battery states (collapses itself automatically on desktops and VMs with no battery).
   - ` hostname@username`: Centered system badge.
   - `󰋚 <count>` **RAM Command History**: Real-time counter of saved commands.
   - `󰕾 <vol>%` **Interactive Volume**: Scroll to adjust, click to mute, zero latency.
@@ -79,6 +81,12 @@ Unlike standard dotfiles designed for 1080p or 4K monitors that feel cramped and
 - Scale font size up or down on the fly inside Kitty terminal.
 - <kbd>Super</kbd> + <kbd>0</kbd> resets back to default.
 - Closing and reopening the terminal automatically reverts to the default `10.5pt` font size.
+
+### 10. 🖼️ Auto-Changing Wallpaper from `~/Pictures/Background`
+- A flock-protected supervisor (`launch-wallpaper.sh`) cycles the desktop background through every image in `~/Pictures/Background`.
+- Rotation happens every **10 minutes** by default and is started automatically with Hyprland.
+- Just drop any `.png`, `.jpg`, `.jpeg`, `.webp`, or `.bmp` files into `~/Pictures/Background` — no configuration needed.
+- Change the interval (in seconds) by exporting `WALLPAPER_INTERVAL`, e.g. `WALLPAPER_INTERVAL=60`.
 
 ---
 
@@ -146,6 +154,8 @@ Setup/
 │   │       ├── paste-history.sh    # Super + V clipboard history manager
 │   │       ├── power-menu.sh       # Super + Esc power options modal
 │   │       ├── toggle-spotlight.sh # Super + Space spotlight launcher
+│   │       ├── wallpaper.sh        # Random wallpaper picker for ~/Pictures/Background
+│   │       ├── launch-wallpaper.sh # Flock-protected wallpaper rotation supervisor
 │   │       └── screenshot.sh       # Area & fullscreen screenshot handler
 │   ├── waybar/
 │   │   ├── config.jsonc            # Waybar modules and bubble layout
@@ -153,6 +163,8 @@ Setup/
 │   │   └── scripts/
 │   │       ├── cmd_history.sh      # In-memory RAM command history engine (max 15)
 │   │       ├── user-host.sh        # Hostname & username badge generator
+│   │       ├── distro.sh           # Linux distribution name + version badge
+│   │       ├── battery.sh          # Battery badge (auto-hides with no battery)
 │   │       └── volume.sh           # State-based volume controller & notifier
 │   ├── dolphin/
 │   │   └── style.qss               # Dark Catppuccin Mocha stylesheet for Dolphin

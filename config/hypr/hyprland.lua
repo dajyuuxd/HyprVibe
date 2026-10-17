@@ -52,12 +52,14 @@ hl.on("hyprland.start", function()
     hl.exec_cmd("/home/ming/.config/waybar/scripts/launch-waybar.sh &")
     hl.exec_cmd("/home/ming/.config/hypr/scripts/launch-clipboard.sh &")
     hl.exec_cmd("/home/ming/.config/hypr/scripts/launch-audio.sh &")
+    hl.exec_cmd("/home/ming/.config/hypr/scripts/launch-wallpaper.sh &")
 end)
 
 -- Ensure supervisor daemons are running even on live reload (flock guarantees singleton)
 hl.exec_cmd("/home/ming/.config/waybar/scripts/launch-waybar.sh &")
 hl.exec_cmd("/home/ming/.config/hypr/scripts/launch-clipboard.sh &")
 hl.exec_cmd("/home/ming/.config/hypr/scripts/launch-audio.sh &")
+hl.exec_cmd("/home/ming/.config/hypr/scripts/launch-wallpaper.sh &")
 
 --------------------------------------------------------------------------------
 -- 4. LOOK AND FEEL (Optimized for small screens)
