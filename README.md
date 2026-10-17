@@ -37,12 +37,12 @@ A minimalist, high-performance, and aesthetic desktop environment built on **Arc
 | <kbd>Super</kbd> + <kbd>F</kbd> | Fullscreen Toggle |
 | <kbd>Super</kbd> + <kbd>D</kbd> | Show Desktop (Hide all windows / Resume) |
 | <kbd>Super</kbd> + <kbd>R</kbd> | Window Display Mode (Float Half-screen ↔ Tile) |
-| <kbd>Super</kbd> + <kbd>H</kbd> | Switch to Previous Workspace |
-| <kbd>Super</kbd> + <kbd>L</kbd> | Switch to Next Workspace |
+| <kbd>Super</kbd> + <kbd>H</kbd> / <kbd>L</kbd> | Focus Neighbor Window Left / Right (Snap when Floating) |
 | <kbd>Super</kbd> + <kbd>Left</kbd> / <kbd>Right</kbd> | Focus Neighbor Window Left / Right |
+| <kbd>Super</kbd> + <kbd>J</kbd> / <kbd>K</kbd> | Move Window Up / Down (Snap Top / Bottom when Floating) |
 | <kbd>Super</kbd> + <kbd>Up</kbd> / <kbd>Down</kbd> | Focus Neighbor Window Up / Down |
-| <kbd>Super</kbd> + <kbd>1</kbd> .. <kbd>9</kbd> | Switch to Workspace 1 through 9 |
-| <kbd>Super</kbd> + <kbd>Shift</kbd> + <kbd>1</kbd> .. <kbd>9</kbd> | Move Active Window to Workspace 1..9 & Follow Focus |
+| <kbd>Super</kbd> + <kbd>[</kbd> | Switch to Previous Workspace |
+| <kbd>Super</kbd> + <kbd>]</kbd> | Switch to Next Workspace |
 | <kbd>Super</kbd> + <kbd>Tab</kbd> | Focus Next Workspace |
 | <kbd>Super</kbd> + <kbd>Shift</kbd> + <kbd>Tab</kbd> | Focus Previous Workspace |
 | <kbd>Super</kbd> + <kbd>M</kbd> | Increase Audio Volume (+5%) |

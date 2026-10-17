@@ -233,17 +233,20 @@ local function cycle_workspace(step)
     hl.dispatch(hl.dsp.focus({ workspace = target_id }))
 end
 
--- Super + H: Previous workspace | Super + L: Next workspace
-hl.bind(mainMod .. " + H", function() cycle_workspace(-1) end)
-hl.bind(mainMod .. " + L", function() cycle_workspace(1) end)
+-- Super + [ / ]: Previous / Next workspace
+hl.bind(mainMod .. " + bracketleft",  function() cycle_workspace(-1) end)
+hl.bind(mainMod .. " + bracketright", function() cycle_workspace(1) end)
 
 hl.bind(mainMod .. " + Tab",          function() cycle_workspace(1) end)
 hl.bind(mainMod .. " + SHIFT + Tab",  function() cycle_workspace(-1) end)
 hl.bind(mainMod .. " + CTRL + Right", function() cycle_workspace(1) end)
 hl.bind(mainMod .. " + CTRL + Left",  function() cycle_workspace(-1) end)
 
-hl.bind(mainMod .. " + Left",  function() snap_or_focus("left") end)
-hl.bind(mainMod .. " + Right", function() snap_or_focus("right") end)
+-- Super + H / L (and Arrows): Focus neighbor window or snap when floating
+hl.bind(mainMod .. " + H",      function() snap_or_focus("left") end)
+hl.bind(mainMod .. " + L",      function() snap_or_focus("right") end)
+hl.bind(mainMod .. " + Left",   function() snap_or_focus("left") end)
+hl.bind(mainMod .. " + Right",  function() snap_or_focus("right") end)
 hl.bind(mainMod .. " + Up",    hl.dsp.focus({ direction = "up" }))
 hl.bind(mainMod .. " + Down",  hl.dsp.focus({ direction = "down" }))
 
