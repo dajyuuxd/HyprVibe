@@ -224,8 +224,24 @@ local function snap_or_move(direction)
     end
 end
 
-hl.bind(mainMod .. " + H", function() snap_or_focus("left") end)
-hl.bind(mainMod .. " + L", function() snap_or_focus("right") end)
+-- Workspace Navigation: Change focus between workspaces
+local function cycle_workspace(step)
+    local cur_ws = hl.get_active_workspace()
+    local cur_id = cur_ws and cur_ws.id or 1
+    local target_id = cur_id + step
+    if target_id < 1 then target_id = 1 end
+    if target_id > 9 then target_id = 9 end
+    hl.dispatch(hl.dsp.focus({ workspace = target_id }))
+end
+
+-- Super + H: Previous workspace | Super + L: Next workspace
+hl.bind(mainMod .. " + H", function() cycle_workspace(-1) end)
+hl.bind(mainMod .. " + L", function() cycle_workspace(1) end)
+
+hl.bind(mainMod .. " + Tab",          function() cycle_workspace(1) end)
+hl.bind(mainMod .. " + SHIFT + Tab",  function() cycle_workspace(-1) end)
+hl.bind(mainMod .. " + CTRL + Right", function() cycle_workspace(1) end)
+hl.bind(mainMod .. " + CTRL + Left",  function() cycle_workspace(-1) end)
 
 hl.bind(mainMod .. " + Left",  function() snap_or_focus("left") end)
 hl.bind(mainMod .. " + Right", function() snap_or_focus("right") end)
@@ -242,23 +258,6 @@ hl.bind(mainMod .. " + SHIFT + Left",  hl.dsp.window.move({ direction = "left" }
 hl.bind(mainMod .. " + SHIFT + Right", hl.dsp.window.move({ direction = "right" }))
 hl.bind(mainMod .. " + SHIFT + Up",    hl.dsp.window.move({ direction = "up" }))
 hl.bind(mainMod .. " + SHIFT + Down",  hl.dsp.window.move({ direction = "down" }))
-
--- Workspace Navigation: Change focus between workspaces
-local function cycle_workspace(step)
-    local cur_ws = hl.get_active_workspace()
-    local cur_id = cur_ws and cur_ws.id or 1
-    local target_id = cur_id + step
-    if target_id < 1 then target_id = 1 end
-    if target_id > 9 then target_id = 9 end
-    hl.dispatch(hl.dsp.focus({ workspace = target_id }))
-end
-
-hl.bind(mainMod .. " + Tab",          function() cycle_workspace(1) end)
-hl.bind(mainMod .. " + SHIFT + Tab",  function() cycle_workspace(-1) end)
-hl.bind(mainMod .. " + CTRL + Right", function() cycle_workspace(1) end)
-hl.bind(mainMod .. " + CTRL + Left",  function() cycle_workspace(-1) end)
-hl.bind(mainMod .. " + bracketright", function() cycle_workspace(1) end)
-hl.bind(mainMod .. " + bracketleft",  function() cycle_workspace(-1) end)
 
 -- Move current window to detail workspace and switch focus
 local function move_window_to_ws(target_ws)
