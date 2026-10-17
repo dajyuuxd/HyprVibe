@@ -92,4 +92,4 @@ else
     CLASS="normal"
 fi
 
-printf '{"text": "%s", "tooltip": "Volume: %s%%\nClick to mute, Scroll to adjust", "class": "%s"}\n' "$TEXT" "$VOL" "$CLASS"
+printf '{"text": "%s", "tooltip": "Volume: %s%%\\nClick to mute, Scroll to adjust", "class": "%s"}\n' "$TEXT" "$VOL" "$CLASS"
