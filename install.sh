@@ -27,6 +27,7 @@ PKGS=(
     kitty
     dunst
     dolphin
+    breeze
     grim
     slurp
     wl-clipboard
@@ -88,7 +89,7 @@ fi
 echo -e "\033[1;32m:: [5/7] Deploying Config Files to ~/.config/...\033[0m"
 mkdir -p "$HOME/.config"
 
-CONFIG_TARGETS=(hypr waybar kitty wofi dunst)
+CONFIG_TARGETS=(hypr waybar kitty wofi dunst dolphin)
 for cfg in "${CONFIG_TARGETS[@]}"; do
     if [ -d "$HOME/.config/$cfg" ]; then
         mkdir -p "$BACKUP_DIR"
@@ -100,10 +101,21 @@ for cfg in "${CONFIG_TARGETS[@]}"; do
     fi
 done
 
-# Dolphin config
+# Dolphin & KDE global theme configs
 if [ -f "$SCRIPT_DIR/config/dolphinrc" ]; then
     [ -f "$HOME/.config/dolphinrc" ] && cp -f "$HOME/.config/dolphinrc" "$BACKUP_DIR/" 2>/dev/null || true
     cp -f "$SCRIPT_DIR/config/dolphinrc" "$HOME/.config/dolphinrc"
+fi
+if [ -f "$SCRIPT_DIR/config/kdeglobals" ]; then
+    [ -f "$HOME/.config/kdeglobals" ] && cp -f "$HOME/.config/kdeglobals" "$BACKUP_DIR/" 2>/dev/null || true
+    cp -f "$SCRIPT_DIR/config/kdeglobals" "$HOME/.config/kdeglobals"
+fi
+
+# Deploy custom binary wrappers (e.g. styled Dolphin)
+mkdir -p "$HOME/.local/bin"
+if [ -d "$SCRIPT_DIR/bin" ]; then
+    cp -rf "$SCRIPT_DIR/bin/"* "$HOME/.local/bin/"
+    chmod +x "$HOME/.local/bin/"* 2>/dev/null || true
 fi
 
 # Set executable permissions on all helper scripts

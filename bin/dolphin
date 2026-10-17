@@ -1,0 +1,3 @@
+#!/bin/bash
+# Dolphin File Manager with Catppuccin Mocha Styling
+exec /usr/bin/dolphin -stylesheet /home/ming/.config/dolphin/style.qss "$@"

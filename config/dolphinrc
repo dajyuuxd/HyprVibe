@@ -1,12 +1,20 @@
 [CompactMode]
-Font=DejaVu Sans,9,-1,5,50,0,0,0,0,0
+Font=JetBrainsMono Nerd Font,10,-1,5,50,0,0,0,0,0
 IconSize=16
 
+[DetailsMode]
+Font=JetBrainsMono Nerd Font,10,-1,5,50,0,0,0,0,0
+IconSize=22
+
 [General]
+ShowFullPath=true
 Version=202
+ViewPropsTimestamp=2026,10,17,20,0,0
 
 [IconsMode]
-IconSize=32
+Font=JetBrainsMono Nerd Font,10,-1,5,50,0,0,0,0,0
+IconSize=48
+NumberOfTextlines=2
 PreviewPath=
 
 [KFileDialog Settings]
@@ -15,3 +23,9 @@ Places Icons Static Size=22
 
 [MainWindow]
 MenuBar=Disabled
+
+[PlacesPanel]
+IconSize=22
+
+[PreviewSettings]
+Plugins=appimagethumbnail,audiothumbnail,comicbookthumbnail,djvuthumbnail,dvrthumbnail,ebookthumbnail,exrthumbnail,directorythumbnail,fontthumbnail,imagethumbnail,jpegthumbnail,krapathumbnail,windowsexethumbnail,windowsimagethumbnail,opendocumentthumbnail,svgthumbnail

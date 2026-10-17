@@ -31,7 +31,8 @@ hl.env("XDG_CURRENT_DESKTOP", "Hyprland")
 hl.env("XDG_SESSION_TYPE", "wayland")
 hl.env("XDG_SESSION_DESKTOP", "Hyprland")
 hl.env("QT_QPA_PLATFORM", "wayland;xcb")
-hl.env("QT_QPA_PLATFORMTHEME", "qt5ct")
+hl.env("QT_STYLE_OVERRIDE", "Breeze")
+hl.env("QT_PLUGIN_PATH", "/home/ming/.local/usr/lib/qt6/plugins:/usr/lib/qt6/plugins")
 hl.env("GDK_BACKEND", "wayland,x11,*")
 hl.env("PATH", "/home/ming/.local/bin:/home/ming/.local/usr/bin:" .. (os.getenv("PATH") or ""))
 hl.env("LD_LIBRARY_PATH", "/home/ming/.local/usr/lib")
@@ -367,6 +368,14 @@ hl.window_rule({
     name = "float-polkit",
     match = { class = "org.kde.polkit-kde-authentication-agent-1" },
     float = true,
+})
+
+-- Dolphin file manager styling (rounded Catppuccin dark glass)
+hl.window_rule({
+    name = "dolphin-styling",
+    match = { class = "org.kde.dolphin" },
+    rounding = 14,
+    opacity = 0.95,
 })
 
 -- Blur effects for waybar and wofi
