@@ -1,5 +1,7 @@
-# 🌌 Catppuccin Mocha Hyprland Desktop Environment
-### *Tailored & Pixel-Optimized for Small Displays (1366×768 / 720p)*
+# 🌌 HyprVibe — Catppuccin Mocha Hyprland Desktop Environment
+### *By [@dajyuuxd](https://github.com/dajyuuxd) • Tailored & Pixel-Optimized for Small Displays (1366×768 / 720p)*
+
+[![GitHub Repo](https://img.shields.io/badge/GitHub-HyprVibe-181825?logo=github&style=for-the-badge)](https://github.com/dajyuuxd/HyprVibe)
 
 [![Arch Linux](https://img.shields.io/badge/Arch%20Linux-1793D1?logo=arch-linux&logoColor=fff&style=for-the-badge)](https://archlinux.org)
 [![Hyprland](https://img.shields.io/badge/Hyprland-00AFFF?logo=wayland&logoColor=fff&style=for-the-badge)](https://hyprland.org)
@@ -184,7 +186,7 @@ Setup/
 Clone the repository and run the automated installer:
 
 ```bash
-git clone https://github.com/<YOUR_GITHUB_USERNAME>/hyprland-setup.git ~/Setup
+git clone https://github.com/dajyuuxd/HyprVibe.git ~/Setup
 cd ~/Setup
 chmod +x install.sh
 ./install.sh
@@ -217,16 +219,11 @@ sudo pacman -S --needed pipewire-audio pipewire-pulse pipewire-alsa wireplumber 
 
 ## 📤 Pushing to GitHub
 
-To publish this repository to your own GitHub account:
+To push your latest changes to GitHub:
 
 ```bash
 cd ~/Setup
-
-# Add your GitHub remote repository
-git remote add origin https://github.com/<YOUR_GITHUB_USERNAME>/hyprland-setup.git
-
-# Push the main branch
-git push -u origin main
+git push origin main
 ```
 
 ---
