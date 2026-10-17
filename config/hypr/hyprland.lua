@@ -149,7 +149,8 @@ local mainMod = "SUPER"
 -- Applications
 hl.bind(mainMod .. " + Return", hl.dsp.exec_cmd("kitty"))
 hl.bind(mainMod .. " + E",      hl.dsp.exec_cmd("dolphin"))
-hl.bind(mainMod .. " + SPACE",  hl.dsp.exec_cmd("/home/ming/.config/hypr/scripts/toggle-spotlight.sh"))
+hl.bind(mainMod .. " + SPACE",   hl.dsp.exec_cmd("/home/ming/.config/hypr/scripts/toggle-spotlight.sh"))
+hl.bind("CTRL + SPACE",          hl.dsp.exec_cmd("/home/ming/.config/hypr/scripts/toggle-spotlight.sh"))
 hl.bind(mainMod .. " + V",      hl.dsp.exec_cmd("/home/ming/.config/hypr/scripts/paste-history.sh"))
 hl.bind(mainMod .. " + B",      hl.dsp.exec_cmd("/home/ming/.config/waybar/scripts/toggle-waybar.sh"))
 hl.bind(mainMod .. " + Escape", hl.dsp.exec_cmd("/home/ming/.config/hypr/scripts/power-menu.sh"))
@@ -276,8 +277,14 @@ local function cycle_or_snap(forward)
     end
 end
 
-hl.bind(mainMod .. " + H",      function() cycle_or_snap(false) end)
-hl.bind(mainMod .. " + L",      function() cycle_or_snap(true) end)
+-- Super + H / L: focus the window on the LEFT / RIGHT of the active window.
+-- If the active window is floating, it snaps to that half of the screen instead.
+hl.bind(mainMod .. " + H", function() snap_or_focus("left") end)
+hl.bind(mainMod .. " + L", function() snap_or_focus("right") end)
+
+-- Bonus: continuous circular window cycling is also available on Alt + Tab.
+hl.bind("ALT + TAB",         function() cycle_or_snap(true) end)
+hl.bind("ALT + SHIFT + TAB", function() cycle_or_snap(false) end)
 hl.bind(mainMod .. " + Left",   function() snap_or_focus("left") end)
 hl.bind(mainMod .. " + Right",  function() snap_or_focus("right") end)
 hl.bind(mainMod .. " + Up",    hl.dsp.focus({ direction = "up" }))

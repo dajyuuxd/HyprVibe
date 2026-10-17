@@ -42,11 +42,12 @@ Unlike standard dotfiles designed for 1080p or 4K monitors that feel cramped and
   - `󰥔 Clock & Date`: Calendar on hover.
   - `⏻ Power Menu Bubble`: One-click access to system power options.
 
-### 2. 🔄 Circular Window Cycling (<kbd>Super</kbd> + <kbd>L</kbd> / <kbd>H</kbd>)
-- Continuous multi-window focus cycle:
+### 2. ↔️ Directional Focus + Circular Window Cycling
+- <kbd>Super</kbd> + <kbd>H</kbd> / <kbd>L</kbd> moves focus to the window on the **left** / **right**.
+  - If the focused window is floating, it smoothly snaps to that half of the screen instead.
+- A continuous circular loop is also available on <kbd>Alt</kbd> + <kbd>Tab</kbd>:
   $$\text{Window 1} \longrightarrow \text{Window 2} \longrightarrow \text{Window 3} \longrightarrow \text{Window 1}$$
-- <kbd>Super</kbd> + <kbd>L</kbd> cycles **forward** through all windows on the workspace in a complete loop.
-- <kbd>Super</kbd> + <kbd>H</kbd> cycles **backward** through the loop.
+- <kbd>Alt</kbd> + <kbd>Tab</kbd> cycles **forward**; <kbd>Alt</kbd> + <kbd>Shift</kbd> + <kbd>Tab</kbd> cycles **backward**.
 - Solves directional focus bottlenecks where navigation gets stuck bouncing back and forth ($1 \leftrightarrow 2$).
 
 ### 3. 🧠 In-Memory Command History (Max 15 in RAM)
@@ -97,7 +98,8 @@ Unlike standard dotfiles designed for 1080p or 4K monitors that feel cramped and
 | :--- | :--- |
 | <kbd>Super</kbd> + <kbd>Return</kbd> | Open Kitty Terminal |
 | <kbd>Super</kbd> + <kbd>E</kbd> | Open Redesigned Dolphin File Manager |
-| <kbd>Super</kbd> + <kbd>Space</kbd> | Spotlight Application Launcher (Wofi) |
+| <kbd>Ctrl</kbd> + <kbd>Space</kbd> | Spotlight Application Launcher (Wofi) |
+| <kbd>Super</kbd> + <kbd>Space</kbd> | Spotlight Application Launcher (alternative) |
 | <kbd>Super</kbd> + <kbd>V</kbd> | Clipboard Paste History (Cliphist + Wofi) |
 | <kbd>Super</kbd> + <kbd>B</kbd> | Toggle Taskbar (Waybar) Visibility (Show / Hide) |
 | <kbd>Super</kbd> + <kbd>Esc</kbd> | System Power Menu (Shutdown, Reboot, etc.) |
@@ -109,8 +111,9 @@ Unlike standard dotfiles designed for 1080p or 4K monitors that feel cramped and
 | <kbd>Super</kbd> + <kbd>F</kbd> | Fullscreen Toggle |
 | <kbd>Super</kbd> + <kbd>D</kbd> | Show Desktop (Hide all windows / Resume) |
 | <kbd>Super</kbd> + <kbd>R</kbd> | Display Mode (Float Half-screen centered ↔ Tile) |
-| <kbd>Super</kbd> + <kbd>L</kbd> | Cycle Focus to **Next Window** in Circle ($1 \rightarrow 2 \rightarrow 3 \rightarrow 1$) |
-| <kbd>Super</kbd> + <kbd>H</kbd> | Cycle Focus to **Previous Window** in Circle ($3 \rightarrow 2 \rightarrow 1 \rightarrow 3$) |
+| <kbd>Super</kbd> + <kbd>H</kbd> | Focus the Window on the **Left** (snaps floating windows left) |
+| <kbd>Super</kbd> + <kbd>L</kbd> | Focus the Window on the **Right** (snaps floating windows right) |
+| <kbd>Alt</kbd> + <kbd>Tab</kbd> / <kbd>Alt</kbd> + <kbd>Shift</kbd> + <kbd>Tab</kbd> | Cycle Focus Through Windows in a Circle (Next / Previous) |
 | <kbd>Super</kbd> + <kbd>Left</kbd> / <kbd>Right</kbd> | Focus Neighbor Window Left / Right |
 | <kbd>Super</kbd> + <kbd>Up</kbd> / <kbd>Down</kbd> | Focus Neighbor Window Up / Down |
 | <kbd>Super</kbd> + <kbd>J</kbd> / <kbd>K</kbd> | Move Window Up / Down (Snap Top / Bottom when Floating) |
