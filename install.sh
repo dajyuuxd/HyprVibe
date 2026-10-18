@@ -117,7 +117,7 @@ fi
 echo -e "\033[1;32m:: [5/7] Deploying Config Files to ~/.config/...\033[0m"
 mkdir -p "$HOME/.config"
 
-CONFIG_TARGETS=(hypr waybar kitty wofi dunst dolphin)
+CONFIG_TARGETS=(hypr waybar kitty wofi dunst dolphin fcitx5)
 for cfg in "${CONFIG_TARGETS[@]}"; do
     if [ -d "$HOME/.config/$cfg" ]; then
         mkdir -p "$BACKUP_DIR"
