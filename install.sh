@@ -87,6 +87,10 @@ if [ ! -f "$FONT_DIR/SauceCodeProNerdFont-Regular.ttf" ]; then
     echo ":: Downloading smooth SauceCodePro (Source Code Pro) Nerd Font with full Vietnamese support..."
     curl -fsSL "https://github.com/ryanoasis/nerd-fonts/releases/download/v3.5.1/SourceCodePro.tar.xz" -o "/tmp/SourceCodePro.tar.xz" && tar -xf "/tmp/SourceCodePro.tar.xz" -C "$FONT_DIR" && rm -f "/tmp/SourceCodePro.tar.xz" || true
 fi
+if [ ! -f "$FONT_DIR/GeistMonoNerdFont-Regular.ttf" ]; then
+    echo ":: Downloading Inter-inspired modern GeistMono Nerd Font with full Vietnamese support..."
+    curl -fsSL "https://github.com/ryanoasis/nerd-fonts/releases/download/v3.5.1/GeistMono.tar.xz" -o "/tmp/GeistMono.tar.xz" && tar -xf "/tmp/GeistMono.tar.xz" -C "$FONT_DIR" && rm -f "/tmp/GeistMono.tar.xz" || true
+fi
 fc-cache -fv "$FONT_DIR" >/dev/null 2>&1 || true
 
 # 4. Setup Cursor Theme

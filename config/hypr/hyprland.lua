@@ -354,16 +354,11 @@ local function cycle_or_snap(forward)
     end
 end
 
--- Super + H / L: focus the window on the LEFT / RIGHT of the active window.
--- If the active window is floating, it snaps to that half of the screen instead.
-hl.bind(mainMod .. " + H", function() snap_or_focus("left") end)
-hl.bind(mainMod .. " + L", function() snap_or_focus("right") end)
-
--- Bonus: continuous circular window cycling is also available on Alt + Tab.
-hl.bind("ALT + TAB",         function() cycle_or_snap(true) end)
-hl.bind("ALT + SHIFT + TAB", function() cycle_or_snap(false) end)
-hl.bind(mainMod .. " + Left",   function() snap_or_focus("left") end)
-hl.bind(mainMod .. " + Right",  function() snap_or_focus("right") end)
+-- Super + H / L (and Arrows): Circular Window Focus across all windows (1 -> 2 -> Chrome -> 1)
+hl.bind(mainMod .. " + L",     function() hl.dispatch(hl.dsp.window.cycle_next({ forward = true })) end)
+hl.bind(mainMod .. " + H",     function() hl.dispatch(hl.dsp.window.cycle_next({ forward = false })) end)
+hl.bind(mainMod .. " + Right", function() hl.dispatch(hl.dsp.window.cycle_next({ forward = true })) end)
+hl.bind(mainMod .. " + Left",  function() hl.dispatch(hl.dsp.window.cycle_next({ forward = false })) end)
 hl.bind(mainMod .. " + Up",    hl.dsp.focus({ direction = "up" }))
 hl.bind(mainMod .. " + Down",  hl.dsp.focus({ direction = "down" }))
 
