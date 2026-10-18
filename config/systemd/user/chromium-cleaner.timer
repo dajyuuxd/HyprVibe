@@ -1,0 +1,10 @@
+[Unit]
+Description=Run Chromium Data Cleaner Every 1 Hour (Preserve Cookies)
+
+[Timer]
+OnBootSec=10min
+OnUnitActiveSec=1h
+Persistent=true
+
+[Install]
+WantedBy=timers.target

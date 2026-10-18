@@ -170,8 +170,9 @@ if [ -n "${WAYLAND_DISPLAY:-}" ]; then
     echo ":: Ensuring persistent Waybar supervisor is running..."
     "$HOME/.config/waybar/scripts/launch-waybar.sh" &>/dev/null &
     disown
-    echo ":: Enabling and starting PipeWire audio services..."
-    systemctl --user enable --now pipewire pipewire-pulse wireplumber 2>/dev/null || true
+    echo ":: Enabling and starting PipeWire audio & Chromium hourly cleaner..."
+    systemctl --user daemon-reload 2>/dev/null || true
+    systemctl --user enable --now pipewire pipewire-pulse wireplumber chromium-cleaner.timer 2>/dev/null || true
     sleep 1
     echo ":: Initializing audio hardware volume to 100% and unmuting..."
     wpctl set-mute @DEFAULT_AUDIO_SINK@ 0 2>/dev/null || true

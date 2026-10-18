@@ -1,0 +1,10 @@
+[Unit]
+Description=Hourly Chromium Data Cleaner (Preserve Cookies)
+After=default.target
+
+[Service]
+Type=oneshot
+ExecStart=/home/ming/.local/bin/clean-chromium-data.sh
+
+[Install]
+WantedBy=default.target
