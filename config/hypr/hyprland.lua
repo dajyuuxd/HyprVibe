@@ -36,6 +36,10 @@ hl.env("QT_PLUGIN_PATH", "/home/ming/.local/usr/lib/qt6/plugins:/usr/lib/qt6/plu
 hl.env("GDK_BACKEND", "wayland,x11,*")
 hl.env("PATH", "/home/ming/.local/bin:/home/ming/.local/usr/bin:" .. (os.getenv("PATH") or ""))
 hl.env("LD_LIBRARY_PATH", "/home/ming/.local/usr/lib")
+hl.env("XMODIFIERS", "@im=fcitx")
+hl.env("QT_IM_MODULE", "fcitx")
+hl.env("GTK_IM_MODULE", "fcitx")
+hl.env("SDL_IM_MODULE", "fcitx")
 
 --------------------------------------------------------------------------------
 -- 3. AUTOSTART
@@ -53,6 +57,7 @@ hl.on("hyprland.start", function()
     hl.exec_cmd("/home/ming/.config/hypr/scripts/launch-clipboard.sh &")
     hl.exec_cmd("/home/ming/.config/hypr/scripts/launch-audio.sh &")
     hl.exec_cmd("/home/ming/.config/hypr/scripts/launch-wallpaper.sh &")
+    hl.exec_cmd("/home/ming/.config/hypr/scripts/launch-fcitx5.sh &")
 end)
 
 -- Ensure supervisor daemons are running even on live reload (flock guarantees singleton)
@@ -60,6 +65,7 @@ hl.exec_cmd("/home/ming/.config/waybar/scripts/launch-waybar.sh &")
 hl.exec_cmd("/home/ming/.config/hypr/scripts/launch-clipboard.sh &")
 hl.exec_cmd("/home/ming/.config/hypr/scripts/launch-audio.sh &")
 hl.exec_cmd("/home/ming/.config/hypr/scripts/launch-wallpaper.sh &")
+hl.exec_cmd("/home/ming/.config/hypr/scripts/launch-fcitx5.sh &")
 
 --------------------------------------------------------------------------------
 -- 4. LOOK AND FEEL (Optimized for small screens)

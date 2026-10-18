@@ -54,6 +54,11 @@ PKGS=(
     wireplumber
     alsa-utils
     pavucontrol
+    fcitx5
+    fcitx5-unikey
+    fcitx5-gtk
+    fcitx5-qt
+    fcitx5-configtool
 )
 
 if [ "$EUID" -eq 0 ]; then
