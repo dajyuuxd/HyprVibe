@@ -166,6 +166,7 @@ hl.bind(mainMod .. " + Q", hl.dsp.window.close())
 
 -- Super + F: Maximize current window in current workspace and pull remaining windows to next workspace
 local workspace_parked_windows = {}
+local workspace_target_map = {}
 
 local function toggle_maximize_current_workspace()
     local cur_ws = hl.get_active_workspace()
@@ -173,19 +174,40 @@ local function toggle_maximize_current_workspace()
     local cur_ws_id = cur_ws.id
 
     local active_win = hl.get_active_window()
-    if not active_win or not active_win.address then return end
+    local active_addr = active_win and active_win.address
 
+    -- Check if current workspace has parked windows out, OR if current workspace IS the parked destination
+    local origin_ws = cur_ws_id
     local parked_info = workspace_parked_windows[cur_ws_id]
+    if not parked_info and workspace_target_map[cur_ws_id] then
+        origin_ws = workspace_target_map[cur_ws_id]
+        parked_info = workspace_parked_windows[origin_ws]
+    end
 
     if parked_info and parked_info.windows and #parked_info.windows > 0 then
-        -- Restore parked windows back to current workspace
+        -- Restore parked windows back to origin_ws
         for _, addr in ipairs(parked_info.windows) do
-            hl.dispatch(hl.dsp.window.move({ workspace = cur_ws_id, window = "address:" .. addr, silent = true }))
+            hl.dispatch(hl.dsp.window.move({ workspace = origin_ws, window = "address:" .. addr, silent = true }))
         end
-        workspace_parked_windows[cur_ws_id] = nil
-        hl.dispatch(hl.dsp.window.focus({ window = "address:" .. active_win.address }))
+        local target_ws = parked_info.target_ws
+        local original_active_addr = parked_info.active_address
+        workspace_parked_windows[origin_ws] = nil
+        if target_ws then
+            workspace_target_map[target_ws] = nil
+        end
+
+        -- Ensure origin workspace is focused
+        hl.dispatch(hl.dsp.focus({ workspace = origin_ws }))
+
+        -- Focus the active window or previously active window
+        local focus_addr = active_addr or original_active_addr
+        if focus_addr then
+            hl.dispatch(hl.dsp.focus({ window = "address:" .. focus_addr }))
+        end
     else
-        -- Get all windows currently in this workspace
+        -- If active window is missing or no address, cannot identify which window to keep
+        if not active_addr then return end
+
         local wins = hl.get_workspace_windows(cur_ws_id)
         if not wins or #wins <= 1 then
             return
@@ -220,16 +242,22 @@ local function toggle_maximize_current_workspace()
 
         local parked = {}
         for _, w in ipairs(wins) do
-            if w.address ~= active_win.address then
+            if w.address ~= active_addr then
                 table.insert(parked, w.address)
                 hl.dispatch(hl.dsp.window.move({ workspace = target_ws, window = "address:" .. w.address, silent = true }))
             end
         end
 
         workspace_parked_windows[cur_ws_id] = {
+            active_address = active_addr,
             target_ws = target_ws,
             windows = parked,
         }
+        workspace_target_map[target_ws] = cur_ws_id
+
+        -- Explicitly lock focus on the active window on current workspace
+        hl.dispatch(hl.dsp.focus({ workspace = cur_ws_id }))
+        hl.dispatch(hl.dsp.focus({ window = "address:" .. active_addr }))
     end
 end
 
