@@ -162,7 +162,59 @@ hl.bind(mainMod .. " + Escape", hl.dsp.exec_cmd("/home/ming/.config/hypr/scripts
 
 -- Window Actions
 hl.bind(mainMod .. " + Q", hl.dsp.window.close())
-hl.bind(mainMod .. " + F",         hl.dsp.window.fullscreen({ mode = "maximized", action = "toggle" }))
+
+-- Super + F: Maximize by pushing window to next workspace (without hiding other windows)
+local maximized_windows = {}
+
+local function toggle_maximize_workspace()
+    local win = hl.get_active_window()
+    if not win or not win.address then return end
+
+    local cur_ws = hl.get_active_workspace()
+    local cur_ws_id = cur_ws and cur_ws.id or 1
+
+    local orig_ws_id = maximized_windows[win.address]
+
+    if orig_ws_id and orig_ws_id ~= cur_ws_id then
+        -- Return back to original workspace
+        maximized_windows[win.address] = nil
+        hl.dispatch(hl.dsp.window.move({ workspace = orig_ws_id }))
+        hl.dispatch(hl.dsp.focus({ workspace = orig_ws_id }))
+    else
+        -- Find next empty workspace or next workspace
+        local occupied = {}
+        for _, w in ipairs(hl.get_workspaces()) do
+            if w.windows > 0 then
+                occupied[w.id] = true
+            end
+        end
+
+        local target_ws = nil
+        for id = cur_ws_id + 1, 10 do
+            if not occupied[id] then
+                target_ws = id
+                break
+            end
+        end
+        if not target_ws then
+            for id = 1, 10 do
+                if not occupied[id] and id ~= cur_ws_id then
+                    target_ws = id
+                    break
+                end
+            end
+        end
+        if not target_ws then
+            target_ws = cur_ws_id + 1
+        end
+
+        maximized_windows[win.address] = cur_ws_id
+        hl.dispatch(hl.dsp.window.move({ workspace = target_ws }))
+        hl.dispatch(hl.dsp.focus({ workspace = target_ws }))
+    end
+end
+
+hl.bind(mainMod .. " + F", toggle_maximize_workspace)
 hl.bind(mainMod .. " + SHIFT + F", hl.dsp.window.fullscreen({ mode = "fullscreen", action = "toggle" }))
 
 -- Super + D: Show Desktop (Hide all windows / Resume to normal)
