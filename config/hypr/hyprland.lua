@@ -40,6 +40,7 @@ hl.env("XMODIFIERS", "@im=fcitx")
 hl.env("QT_IM_MODULE", "fcitx")
 hl.env("GTK_IM_MODULE", "fcitx")
 hl.env("SDL_IM_MODULE", "fcitx")
+hl.env("GLFW_IM_MODULE", "ibus")
 
 --------------------------------------------------------------------------------
 -- 3. AUTOSTART
@@ -163,25 +164,34 @@ hl.bind(mainMod .. " + Escape", hl.dsp.exec_cmd("/home/ming/.config/hypr/scripts
 -- Window Actions
 hl.bind(mainMod .. " + Q", hl.dsp.window.close())
 
--- Super + F: Maximize by pushing window to next workspace (without hiding other windows)
-local maximized_windows = {}
+-- Super + F: Maximize current window in current workspace and pull remaining windows to next workspace
+local workspace_parked_windows = {}
 
-local function toggle_maximize_workspace()
-    local win = hl.get_active_window()
-    if not win or not win.address then return end
-
+local function toggle_maximize_current_workspace()
     local cur_ws = hl.get_active_workspace()
-    local cur_ws_id = cur_ws and cur_ws.id or 1
+    if not cur_ws then return end
+    local cur_ws_id = cur_ws.id
 
-    local orig_ws_id = maximized_windows[win.address]
+    local active_win = hl.get_active_window()
+    if not active_win or not active_win.address then return end
 
-    if orig_ws_id and orig_ws_id ~= cur_ws_id then
-        -- Return back to original workspace
-        maximized_windows[win.address] = nil
-        hl.dispatch(hl.dsp.window.move({ workspace = orig_ws_id }))
-        hl.dispatch(hl.dsp.focus({ workspace = orig_ws_id }))
+    local parked_info = workspace_parked_windows[cur_ws_id]
+
+    if parked_info and parked_info.windows and #parked_info.windows > 0 then
+        -- Restore parked windows back to current workspace
+        for _, addr in ipairs(parked_info.windows) do
+            hl.dispatch(hl.dsp.window.move({ workspace = cur_ws_id, window = "address:" .. addr, silent = true }))
+        end
+        workspace_parked_windows[cur_ws_id] = nil
+        hl.dispatch(hl.dsp.window.focus({ window = "address:" .. active_win.address }))
     else
-        -- Find next empty workspace or next workspace
+        -- Get all windows currently in this workspace
+        local wins = hl.get_workspace_windows(cur_ws_id)
+        if not wins or #wins <= 1 then
+            return
+        end
+
+        -- Find next empty workspace or next available workspace
         local occupied = {}
         for _, w in ipairs(hl.get_workspaces()) do
             if w.windows > 0 then
@@ -208,13 +218,22 @@ local function toggle_maximize_workspace()
             target_ws = cur_ws_id + 1
         end
 
-        maximized_windows[win.address] = cur_ws_id
-        hl.dispatch(hl.dsp.window.move({ workspace = target_ws }))
-        hl.dispatch(hl.dsp.focus({ workspace = target_ws }))
+        local parked = {}
+        for _, w in ipairs(wins) do
+            if w.address ~= active_win.address then
+                table.insert(parked, w.address)
+                hl.dispatch(hl.dsp.window.move({ workspace = target_ws, window = "address:" .. w.address, silent = true }))
+            end
+        end
+
+        workspace_parked_windows[cur_ws_id] = {
+            target_ws = target_ws,
+            windows = parked,
+        }
     end
 end
 
-hl.bind(mainMod .. " + F", toggle_maximize_workspace)
+hl.bind(mainMod .. " + F", toggle_maximize_current_workspace)
 hl.bind(mainMod .. " + SHIFT + F", hl.dsp.window.fullscreen({ mode = "fullscreen", action = "toggle" }))
 
 -- Super + D: Show Desktop (Hide all windows / Resume to normal)

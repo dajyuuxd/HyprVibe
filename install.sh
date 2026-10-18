@@ -83,6 +83,10 @@ if [ ! -f "$FONT_DIR/CaskaydiaCoveNerdFont-Regular.ttf" ]; then
     echo ":: Downloading smooth Cascadia Code (CaskaydiaCove) Nerd Font..."
     curl -fsSL "https://github.com/ryanoasis/nerd-fonts/releases/download/v3.5.1/CascadiaCode.tar.xz" -o "/tmp/CascadiaCode.tar.xz" && tar -xf "/tmp/CascadiaCode.tar.xz" -C "$FONT_DIR" && rm -f "/tmp/CascadiaCode.tar.xz" || true
 fi
+if [ ! -f "$FONT_DIR/SauceCodeProNerdFont-Regular.ttf" ]; then
+    echo ":: Downloading smooth SauceCodePro (Source Code Pro) Nerd Font with full Vietnamese support..."
+    curl -fsSL "https://github.com/ryanoasis/nerd-fonts/releases/download/v3.5.1/SourceCodePro.tar.xz" -o "/tmp/SourceCodePro.tar.xz" && tar -xf "/tmp/SourceCodePro.tar.xz" -C "$FONT_DIR" && rm -f "/tmp/SourceCodePro.tar.xz" || true
+fi
 fc-cache -fv "$FONT_DIR" >/dev/null 2>&1 || true
 
 # 4. Setup Cursor Theme
