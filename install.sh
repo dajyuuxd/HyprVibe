@@ -68,11 +68,15 @@ echo -e "\033[1;32m:: [2/7] Configuring Fonts & Symbols...\033[0m"
 FONT_DIR="$HOME/.local/share/fonts/NerdFonts"
 mkdir -p "$FONT_DIR"
 
-# Download Symbols Nerd Font if not present
+# Download Symbols & CaskaydiaCove Nerd Font if not present
 if [ ! -f "$FONT_DIR/SymbolsNerdFont-Regular.ttf" ]; then
     echo ":: Downloading Symbols Nerd Font..."
     curl -fsSL "https://github.com/ryanoasis/nerd-fonts/raw/master/patched-fonts/NerdFontsSymbolsOnly/SymbolsNerdFont-Regular.ttf" -o "$FONT_DIR/SymbolsNerdFont-Regular.ttf" || true
     curl -fsSL "https://github.com/ryanoasis/nerd-fonts/raw/master/patched-fonts/NerdFontsSymbolsOnly/SymbolsNerdFontMono-Regular.ttf" -o "$FONT_DIR/SymbolsNerdFontMono-Regular.ttf" || true
+fi
+if [ ! -f "$FONT_DIR/CaskaydiaCoveNerdFont-Regular.ttf" ]; then
+    echo ":: Downloading smooth Cascadia Code (CaskaydiaCove) Nerd Font..."
+    curl -fsSL "https://github.com/ryanoasis/nerd-fonts/releases/download/v3.5.1/CascadiaCode.tar.xz" -o "/tmp/CascadiaCode.tar.xz" && tar -xf "/tmp/CascadiaCode.tar.xz" -C "$FONT_DIR" && rm -f "/tmp/CascadiaCode.tar.xz" || true
 fi
 fc-cache -fv "$FONT_DIR" >/dev/null 2>&1 || true
 
@@ -116,6 +120,9 @@ fi
 if [ -f "$SCRIPT_DIR/config/kdeglobals" ]; then
     [ -f "$HOME/.config/kdeglobals" ] && cp -f "$HOME/.config/kdeglobals" "$BACKUP_DIR/" 2>/dev/null || true
     cp -f "$SCRIPT_DIR/config/kdeglobals" "$HOME/.config/kdeglobals"
+fi
+if [ -f "$SCRIPT_DIR/config/chromium-flags.conf" ]; then
+    cp -f "$SCRIPT_DIR/config/chromium-flags.conf" "$HOME/.config/chromium-flags.conf"
 fi
 
 # Deploy systemd user services
