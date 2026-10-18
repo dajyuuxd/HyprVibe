@@ -14,7 +14,7 @@ export WAYLAND_DISPLAY="${WAYLAND_DISPLAY:-wayland-1}"
 export XDG_CURRENT_DESKTOP="${XDG_CURRENT_DESKTOP:-Hyprland}"
 export XMODIFIERS="@im=fcitx"
 export QT_IM_MODULE="fcitx"
-export GTK_IM_MODULE="fcitx"
+unset GTK_IM_MODULE
 export SDL_IM_MODULE="fcitx"
 export GLFW_IM_MODULE="ibus"
 
